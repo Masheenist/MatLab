@@ -1,0 +1,17 @@
+%Gurevich formal kinetics model
+%M = sensitive
+%N = infected
+%L = Resistant
+
+function dx = gurevich_kinetics(t,y)
+
+b(1) = 0.01;
+%contagious constant
+
+b(2) = 0.1;
+%recovery constant
+
+dN = -b(1)*y(1)*y(2);
+dM = b(1)*y(1)*y(2)-b(2)*y(2);
+dL = b(2)*y(2);
+dx = [dN, dM, dL]';
