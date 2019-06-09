@@ -1,0 +1,19 @@
+% pandemic
+clear; clc; close all;
+global B0 B1 N gamma t0 beta_max_time
+B0=1.56/3; B1=0.54/3; N=305000000;gamma=1/3; % gamma is in (day)^-1
+t0=8*7; % time of the start in the epidemic in days after the new year
+beta_max_time = 0; % day when the forcing function peaks relative to t0
+tf=52*7; %time in days till the start of vaccinations
+y0=[N 1];
+[t,y]=ode45('pandemicODE',[t0 tf],y0);
+% figure
+% plot(t,y(:,1)/N,t,y(:,2)/N)
+figure
+t=t/7; % convert time to weeks
+plot(t,y(:,2)/N);  xlim([17 52])
+xlabel('Weeks 2009') % x-axis label
+ylabel('Estimated Fraction of Populatin Infected') % y-axis label
+
+figure
+plot(t,B0+B1*cos(2*pi*(t-beta_max_time)/(365/7))); xlim([8 52])
