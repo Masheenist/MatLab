@@ -1,0 +1,23 @@
+%Formal kinetics model
+
+%     dM/dt = -b'NM
+%     dN/dt = b'NM - b''N
+%     dL/dt = b''N
+%Inputs
+%     N = number of infected people
+%     t = time
+%     x = Independent variable (N,M,L)
+%Output
+%     dx - First derivative = rate of change of the populations
+
+to = 30;
+tf = 200;
+
+yo = [99, 1, 0];
+%initial populations N,M,L
+
+[t, y] = ode45('gurevich_kinetics',[to, tf],yo);
+plot(t,y(:,1),t,y(:,2),t,y(:,3))
+xlabel('time')
+ylabel('sensitive, infected, resistant')
+legend('sensitive', 'infected', 'resistant')
