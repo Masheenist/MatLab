@@ -1,6 +1,5 @@
-#Towers Model of disease spread in Matlab
-
 %Towers and Feng SIR model
+
 %S(t)=susceptible
 %I(t)=infected
 %R(t)=recovered
